@@ -1,16 +1,19 @@
-# currently takes ~13 seconds on my laptop
-# I'm pretty okay with this solution. It's not the fastest,
-# but I understand how it works and it's much better than my first try.
-
+# Takes ~100 ms
 num = 10001
 len = 0
+
+# over-approximate answer
 while len / (Math.log(len) - 1) < num
-  len += 100 # approximate is okay
+  len += 100
 end
 
 nums = (2..len).to_a
 
 nums.each do |i|
+  if i > Math.sqrt(len)
+    break
+  end
+
   nums.select! { |j| j == i || j % i != 0 }
 end
 
