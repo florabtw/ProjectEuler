@@ -27,31 +27,37 @@ rows = grid.lines.map! { |line| line.split.map! { |c| c.to_i } }
 len = 20
 max = 0
 
-# traverse horizontally & vertically
-for i in (0...len)
-    for j in (0...len)
-      mult = rows[i][j,4].reduce { |mult, k| mult * k }
-      max = mult if mult > max
-
-      mult = rows.map { |row| row[i] }[j,4].reduce { |mult, k| mult * k }
-      max = mult if mult > max
-    end
+def getHorMult(rows, x, y)
+  rows[y][x,4].reduce { |mult, i| mult * i }
 end
 
-# traverses diagonally
+def getVertMult(rows, x, y)
+  rows.map { |row| row[x] }[y,4].reduce { |mult, i| mult * i }
+end
+
+def getDiagMult(rows, x, y, up)
+  vals = []
+  for k in (0..3)
+    if up
+      vals << rows[y-k][x+k] if y - k >= 0 && x + k < rows[y-k].length
+    else
+      vals << rows[y+k][x+k] if y + k < rows.length && x + k < rows[y+k].length
+    end
+  end
+
+  vals.reduce { |mult, k| mult * k }
+end
+
+def tryMax(max, val)
+  return (max > val) ? max : val
+end
+
 for i in (0...len)
   for j in (0...len)
-    downRight, upRight, = [], []
-    for k in (0..3)
-      downRight << rows[i+k][j+k] if i + k < len && j + k < len
-      upRight << rows[i-k][j+k] if i - k >= 0 && j + k < len
-    end
-
-    drMult = downRight.reduce { |mult, k| mult * k }
-    urMult = upRight.reduce { |mult, k| mult * k }
-
-    max = drMult if drMult > max
-    max = urMult if urMult > max
+    max = tryMax(max, getHorMult(rows, i, j))
+    max = tryMax(max, getVertMult(rows, i, j))
+    max = tryMax(max, getDiagMult(rows, i, j, true))
+    max = tryMax(max, getDiagMult(rows, i, j, false))
   end
 end
 
