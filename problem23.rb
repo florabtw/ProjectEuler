@@ -1,7 +1,10 @@
 def factors(n)
-  factors = []
-  (1..(n/2)).each do |i|
-    factors << i if n % i == 0
+  factors = [1]
+  (2..Math.sqrt(n)).each do |i|
+    if n % i == 0
+      factors << i
+      factors << n / i if n / i != i
+    end
   end
   factors
 end
