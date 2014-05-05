@@ -4,7 +4,7 @@ def estimate_max(power)
     number << 9
     break if num_sum(number.join.to_i, power) <= number.join.to_i
   end
-  number.join.to_i
+  num_sum(number.join.to_i, power)
 end
 
 def num_sum(n, power)
