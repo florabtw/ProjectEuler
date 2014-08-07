@@ -1,6 +1,6 @@
 import Data.List
 
-main = return $ largestPrimeFactor 600851475143
+main = print $ largestPrimeFactor 600851475143
 
 largestPrimeFactor x =
     let largest = floor . sqrt $ fromIntegral x

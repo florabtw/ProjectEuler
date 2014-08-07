@@ -1,4 +1,4 @@
-main = return $ findPal 0 999 999
+main = print $ findPal 0 999 999
 
 findPal :: (Integral a, Show a) => a -> a -> a -> a
 findPal curr upper lower
