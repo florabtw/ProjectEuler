@@ -4,7 +4,7 @@ main = print . maximum $ map multiply [parseHoriz, parseVert, parseDiag]
 
 multiply parsed =
     let everyFour = concat $ map (map (take 4) . tails) parsed
-        everyProduct = map (foldl (*) 1) everyFour
+        everyProduct = map product everyFour
     in  maximum everyProduct
 
 parseHoriz = numList

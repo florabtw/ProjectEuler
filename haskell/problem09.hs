@@ -1,6 +1,6 @@
 import Control.Monad
 
-main = print . foldl1 (*) $ head triplets
+main = print . product $ head triplets
 
 triplets = do
     x <- [1..]
