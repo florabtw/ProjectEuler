@@ -1,0 +1,10 @@
+{
+  "name": "js_euler",
+  "version": "1.0.0",
+  "description": "Solving Project Euler problems",
+  "author": "Nick Pierson",
+  "license": "MIT",
+  "devDependencies": {
+    "lodash": "^3.10.1"
+  }
+}
