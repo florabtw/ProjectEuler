@@ -4,7 +4,8 @@
   "description": "Solving Project Euler problems",
   "author": "Nick Pierson",
   "license": "MIT",
-  "devDependencies": {
+  "dependencies": {
+    "big-integer": "^1.6.15",
     "lodash": "^3.10.1"
   }
 }
