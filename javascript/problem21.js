@@ -1,13 +1,21 @@
 var cache = {};
 
 function d(num) {
+  if ( num == 1 ) {
+    return 0;
+  }
+
   if ( !cache[ num ] ) {
     var divisors = [ 1 ];
-    for (var i = 2; i <= Math.sqrt( num ); i++) {
+    for (var i = 2; i < Math.sqrt( num ); i++) {
       if ( num % i == 0 ) {
         divisors.push( i );
         divisors.push( num / i );
       }
+    }
+
+    if ( Math.sqrt( num ) % 1 == 0 ) {
+      divisors.push( num );
     }
 
     cache[ num ] = divisors.reduce( (sum, n) => sum + n, 0 );
