@@ -7,7 +7,7 @@ function numDivisors(num) {
     }
   }
 
-  if ( Math.sqrt(num) % 0 == 0 ) {
+  if ( Math.sqrt(num) % 1 == 0 ) {
     result++;
   }
 
